@@ -5,7 +5,7 @@ function getPostTeamQuery(teams) {
 }
 
 function getTeamRankingQuery() {
-  return "SELECT * FROM teams";
+  return "SELECT * FROM teams ORDER BY total_match_point DESC, total_match_goal DESC, alternate_total_match_point DESC, registration_date ASC";
 }
 
 function getDeleteTeamQuery() {

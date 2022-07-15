@@ -36,11 +36,15 @@ async function handlePostMatch(req, res) {
     await client.query("BEGIN");
     insertTeamQueryString = getPostTeamQuery(teams);
     await client.query(insertTeamQueryString);
-    getTeamRankingQueryString = getTeamRankingQuery();
+    getTeamRankingQueryString = getTeamRankingQuery(1);
+    let data =  await client.query(getTeamRankingQueryString);
+    let first_group_rank = data.rows
+    getTeamRankingQueryString = getTeamRankingQuery(2);
     data =  await client.query(getTeamRankingQueryString);
-
+    let second_group_rank = data.rows
     res.status(200).json({
-      team_ranking: data.rows
+      first_group_rank,
+      second_group_rank
     });
     await client.query("COMMIT");
   } catch (err) {

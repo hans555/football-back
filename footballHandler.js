@@ -1,5 +1,6 @@
 const { pool } = require("./database");
 const jsonic = require("jsonic");
+const { getTeamRankingQuery, getPostTeamQuery } = require("./footballQueries");
 require("dotenv").config();
 
 async function handlePostMatch(req, res) {
@@ -8,9 +9,7 @@ async function handlePostMatch(req, res) {
 
   const client = await pool.connect();
   try {
-
-    res.status(200).json({
-    });
+    res.status(200).json({});
   } catch (err) {
     console.log(err);
     res.status(400).end();
@@ -20,5 +19,5 @@ async function handlePostMatch(req, res) {
 }
 
 module.exports = {
-  handlePostMatch
+  handlePostMatch,
 };
